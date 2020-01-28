@@ -23,6 +23,9 @@ namespace Bank
         {
             while (work)
             {
+                Console.BackgroundColor = ConsoleColor.DarkGreen; //Цвет фона
+                Console.ForegroundColor = ConsoleColor.White; //Цвет символов
+
                 Console.Clear(); //Очищаем консоль
 
                 for (int i = 0; i < options.Length; i++) //Выводим все пункты меню
@@ -46,14 +49,11 @@ namespace Bank
 
                 if (selection < 0) selection = options.Length - 1;
                 else if (selection > options.Length - 1) selection = 0;
-
-
-                Console.BackgroundColor = ConsoleColor.DarkGreen; //Цвет фона
-                Console.ForegroundColor = ConsoleColor.White; //Цвет символов
             }
         }
 
         static void EnterSelection(int selection) {
+            Console.Clear();
             switch (selection) {
                 case 0:Console.WriteLine("Выбрано открытие счета");Console.ReadKey();break;
                 case 1:Console.WriteLine("Выбрано закрытие счета");Console.ReadKey();break;
@@ -62,7 +62,6 @@ namespace Bank
                 case 5:Console.WriteLine("Выбрано снятие");Console.ReadKey();break;
                 case 6:work = false;break;
             }
-            Console.Clear();
         }
     }
 }
