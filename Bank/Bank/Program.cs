@@ -17,7 +17,7 @@ namespace Bank
 
         static public int selection;
         static public int level;
-        static char c = 'w';
+        static string c = "";
         static bool work = true;
         static void Main(string[] args)
         {
@@ -34,14 +34,14 @@ namespace Bank
                     else Console.WriteLine("> " + options[i]);
                 }
 
-                c = Console.ReadKey(true).KeyChar; //Читаем кнопку
+                c = Console.ReadKey(true).Key.ToString(); //Читаем кнопку
 
                 //Логика визу
 
                 //Изменяем выделенный пункт меню
-                if (c == 'w' || c == 'W') selection--;
-                else if (c == 's' || c == 'S') selection++;
-                else if ((int)c == 13)
+                if (c == "UpArrow") selection--;
+                else if (c == "DownArrow") selection++;
+                else if (c == "Enter")
                 {
                     EnterSelection(selection);
                 }
