@@ -46,7 +46,7 @@ namespace Bank
                     Money = Money * 1.1f;
                 }
             }
-            return 0;
+            return Money;
         }
     }
 }
