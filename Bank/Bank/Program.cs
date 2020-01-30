@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Bank
 {
@@ -14,6 +15,8 @@ namespace Bank
             "Снять",
             "Выход"
         };
+
+        static List<Account> accounts=new List<Account>();
 
         static public int selection;
         static public int level;
@@ -57,13 +60,29 @@ namespace Bank
             Console.Clear();
             switch (selection)
             {
-                case 0: Console.WriteLine("Выбрано открытие счета"); Console.ReadKey(); break;
+                case 0: Console.WriteLine("Выбрано открытие счета"); openAccount(); Console.ReadKey(); break;
                 case 1: Console.WriteLine("Выбрано закрытие счета"); Console.ReadKey(); break;
                 case 2: Console.WriteLine("Выбрана заморозка счета"); Console.ReadKey(); break;
                 case 4: Console.WriteLine("Выбрано внесение"); Console.ReadKey(); break;
                 case 5: Console.WriteLine("Выбрано снятие"); Console.ReadKey(); break;
                 case 6: work = false; break;
             }
+        }
+
+        static void openAccount()
+        {
+            Pasport pas;
+            Console.WriteLine("Введите ФИО:");
+            string names = Console.ReadLine();
+            Console.WriteLine("Введите дату рождения:");
+            string bday = Console.ReadLine();
+            Console.WriteLine("Введите дату пароль:");
+            string pass=Console.ReadLine();
+            Pasport.birthDate bdate = new Pasport.birthDate();
+            bdate.fromString(bday);
+            pas = new Pasport(names.Split(' ')[0], names.Split(' ')[1], names.Split(' ')[2], bdate);
+
+            accounts.Add(new Account(pas, pass, "RUB", new Random().Next(0, 100000)));
         }
     }
 }
