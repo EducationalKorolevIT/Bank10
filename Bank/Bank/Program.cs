@@ -9,6 +9,7 @@ namespace Bank
             "Открыть счет",
             "Закрыть счет",
             "Заморозить счет",
+            "Показать счета",
             "Внести",
             "Снять",
             "Перевод денежных средств",
@@ -17,7 +18,7 @@ namespace Bank
 
         static public int selection;
         static public int level;
-        static char c='w';
+        static string c = "";
         static bool work = true;
         static void Main(string[] args)
         {
@@ -34,14 +35,14 @@ namespace Bank
                     else Console.WriteLine("> " + options[i]);
                 }
 
-                c = Console.ReadKey(true).KeyChar; //Читаем кнопку
+                c = Console.ReadKey(true).Key.ToString(); //Читаем кнопку
 
                 //Логика визу
 
                 //Изменяем выделенный пункт меню
-                if (c == 'w' || c == 'W') selection--;
-                else if (c == 's' || c == 'S') selection++;
-                else if ((int)c == 13)
+                if (c == "UpArrow") selection--;
+                else if (c == "DownArrow") selection++;
+                else if (c == "Enter")
                 {
                     EnterSelection(selection);
                 }
@@ -52,15 +53,52 @@ namespace Bank
             }
         }
 
-        static void EnterSelection(int selection) {
+        static void EnterSelection(int selection)
+        {
             Console.Clear();
-            switch (selection) {
-                case 0:Console.WriteLine("Выбрано открытие счета");Console.ReadKey();break;
-                case 1:Console.WriteLine("Выбрано закрытие счета");Console.ReadKey();break;
-                case 2:Console.WriteLine("Выбрана заморозка счета");Console.ReadKey();break;
-                case 4:Console.WriteLine("Выбрано внесение");Console.ReadKey();break;
-                case 5:Console.WriteLine("Выбрано снятие");Console.ReadKey();break;
-                case 6:work = false;break;
+            switch (selection)
+            {
+                case 0: 
+                    { 
+                        Console.WriteLine("Выбрано открытие счета");
+                        Score.OpenScore();
+                        Console.ReadKey(); 
+                    } break;
+                case 1:
+                    {
+                        Console.WriteLine("Выбрано закрытие счета"); 
+                        Console.ReadKey();
+                    }
+                    break;
+                case 2:
+                    {
+                        Console.WriteLine("Выбрана заморозка счета");
+                        Console.ReadKey();
+                    }
+                    break;
+                case 3:
+                    {
+                        Console.WriteLine("Список счетов");
+                        Score.ViewScore();
+                        Console.ReadKey();
+                    }
+                    break;
+                case 4:
+                    { 
+                        Console.WriteLine("Выбрано внесение"); 
+                        Console.ReadKey(); 
+                    }
+                    break;
+                case 5:
+                    {
+                        Console.WriteLine("Выбрано снятие");
+                        Console.ReadKey();
+                    }
+                    break;
+                case 6: 
+                    {
+                        work = false; 
+                        }break;
             }
         }
     }
