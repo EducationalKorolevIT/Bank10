@@ -84,18 +84,36 @@ namespace Bank
                     }
                     break;
                 case 4:
-                    { 
-                        Console.WriteLine("Выбрано внесение"); 
-                        Console.ReadKey(); 
+                    {
+                        Console.WriteLine("Введите номер счета, на который внести:");
+                        int num = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Введите, сколько денег внести (" + Score.Scores[num].getValuteType() + "):");
+                        int money = Convert.ToInt32(Console.ReadLine());
+                        Score.Scores[num].addMoney(money);
                     }
                     break;
                 case 5:
                     {
-                        Console.WriteLine("Выбрано снятие");
-                        Console.ReadKey();
+                        Console.WriteLine("Введите номер счета, с которого снять:");
+                        int num = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Введите, сколько денег снять (" + Score.Scores[num].getValuteType() + "):");
+                        int money = Convert.ToInt32(Console.ReadLine());
+                        Score.Scores[num].subtractMoney(money);
                     }
                     break;
-                case 6: 
+                case 6:
+                    {
+                        Console.WriteLine("Введите номер счета, с которого перевести:");
+                        int from = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Введите номер счета, на который перевести:");
+                        int to = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Введите, сколько денег перевести:");
+                        int money = Convert.ToInt32(Console.ReadLine());
+
+                        Score.transfer(from, to, money);
+                    }
+                    break;
+                case 7: 
                     {
                         work = false; 
                         }break;

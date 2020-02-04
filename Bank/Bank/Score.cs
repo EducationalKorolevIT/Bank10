@@ -6,7 +6,7 @@ namespace Bank
 {
     enum Currency
     {
-        EUR,
+        EUR=1,
         RUB,
         USD
     }
@@ -25,11 +25,11 @@ namespace Bank
         {
             Console.Write("Введите тип валюты (1 - EUR, 2 - RUB, 3 - USD):");
             int Currency = Convert.ToInt32(Console.ReadLine());
-            if (Currency == 0)
-                Valute = Bank.Currency.EUR;
             if (Currency == 1)
-                Valute = Bank.Currency.RUB;
+                Valute = Bank.Currency.EUR;
             if (Currency == 2)
+                Valute = Bank.Currency.RUB;
+            if (Currency == 3)
                 Valute = Bank.Currency.USD;
             Console.Write("Введите количество денежных средств:");
             Money = Convert.ToDouble(Console.ReadLine());
@@ -61,6 +61,42 @@ namespace Bank
             Console.WriteLine("Введите любую клавишу для продолжения...");
         }
 
+        public void addMoney(double money)
+        {
+            this.Money += money;
+        }
 
+        public void subtractMoney(double money)
+        {
+            this.Money -= money;
+        }
+
+        public static void transfer(int from, int to, double money)
+        {
+            Score fr = Scores[from];
+            Score t = Scores[to];
+            if ((int)fr.Valute == (int)t.Valute)
+            {
+                fr.subtractMoney(money);
+                t.addMoney(money);
+            }
+            else
+            {
+                fr.subtractMoney(money);
+                money = Converter.Convert((int)fr.Valute, (int)t.Valute, money);
+                t.addMoney(money);
+            }
+        }
+
+        public string getValuteType()
+        {
+            switch ((int)Valute)
+            {
+                case 1:return "EUR";
+                case 2:return "RUB";
+                case 3:return "USD";
+            }
+            return "";
+        }
     }
 }

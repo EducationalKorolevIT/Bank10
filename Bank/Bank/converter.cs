@@ -6,20 +6,17 @@ namespace Bank
 {
     class Converter
     {
-        static int CurrentMoney = 0;
-        static int CurrencyСonverted = 0;
-        static double Money = 0;
-        public static double Convert()
+        public static double Convert(int CurrentMoney,int CurrencyСonverted,double Money)
         {
             if (CurrentMoney == 1)
             {
                 if(CurrencyСonverted == 2)
                 {
-                    Money = Money * 0.016f;
+                    Money = Money * 70.05f;
                 }
                 if(CurrencyСonverted == 3)
                 {
-                    Money = Money * 0.014f;
+                    Money = Money * 1.11f;
                 }
 
             }
@@ -27,11 +24,11 @@ namespace Bank
             {
                 if(CurrencyСonverted == 1)
                 {
-                    Money = Money * 63.18f;
+                    Money = Money * 0.014f;
                 }
                 if (CurrencyСonverted == 3)
                 {
-                    Money = Money * 0.91f;
+                    Money = Money * 0.016f;
                 }
 
             }
@@ -39,11 +36,11 @@ namespace Bank
             {
                 if (CurrencyСonverted == 1)
                 {
-                    Money = Money * 69.67f;
+                    Money = Money * 0.9f;
                 }
                 if (CurrencyСonverted == 2)
                 {
-                    Money = Money * 1.1f;
+                    Money = Money * 63.38f;
                 }
             }
             return Money;
