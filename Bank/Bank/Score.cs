@@ -18,6 +18,7 @@ namespace Bank
         Currency Valute;
         int Id;
         public static int LastId = 0;
+        int perc;
 
         public static List<Score> Scores = new List<Score>();
 
@@ -33,6 +34,8 @@ namespace Bank
                 Valute = Bank.Currency.USD;
             Console.Write("Введите количество денежных средств:");
             Money = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Введите процентную ставку (дневную)(%):");
+            perc = Convert.ToInt32(Console.ReadLine());
             Id = ++LastId;
         }
 
@@ -88,6 +91,15 @@ namespace Bank
             }
         }
 
+        public static int findScoreByID(int id)
+        {
+            for (int i = 0; i < Scores.Count; i++)
+            {
+                if (Scores[i].Id == id) return i;
+            }
+
+            return -1;
+        }
         public string getValuteType()
         {
             switch ((int)Valute)
@@ -97,6 +109,16 @@ namespace Bank
                 case 3:return "USD";
             }
             return "";
+        }
+
+        public static void multiplyByDays(int id,int days)
+        {
+            Score s = Scores[id];
+            for(int i = 0; i < days; i++)
+            {
+                s.Money *= (s.perc + 100)/100.0;
+            }
+            Scores[id] = s;
         }
     }
 }
